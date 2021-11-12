@@ -4,6 +4,15 @@
  */
 package proyectofinalpoo;
 
+import conexion.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Daniel Medina
@@ -29,22 +38,22 @@ public class PanelEspacios extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableLibro = new javax.swing.JTable();
+        tableEspacio = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jtfIdE = new javax.swing.JTextField();
+        jtfNombreE = new javax.swing.JTextField();
+        jtfDescripcionE = new javax.swing.JTextField();
+        jtfCapacidadE = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jtfBuscarIdE = new javax.swing.JTextField();
+        btnCargarEspa = new javax.swing.JButton();
+        btnCargarBDEspa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAddEspacios = new javax.swing.JButton();
+        btnEliminarEspa = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
 
@@ -52,21 +61,21 @@ public class PanelEspacios extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Espacios");
 
-        tableLibro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tableLibro.setModel(new javax.swing.table.DefaultTableModel(
+        tableEspacio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableEspacio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Capacidad", "Descripción"
+                "ID", "Nombre", "Capacidad", "Descripción", "Disponible"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -77,7 +86,7 @@ public class PanelEspacios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableLibro);
+        jScrollPane1.setViewportView(tableEspacio);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("ID Espacio:");
@@ -91,48 +100,63 @@ public class PanelEspacios extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Descripción:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfIdE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfNombreE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfDescripcionE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfCapacidadE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("ID espacio:");
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton7.setText("Cargar");
-        jButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCargarEspa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarEspa.setText("Cargar");
+        btnCargarEspa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCargarEspa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarEspaActionPerformed(evt);
+            }
+        });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton8.setText("Cargar desde BD");
-        jButton8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCargarBDEspa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarBDEspa.setText("Cargar desde BD");
+        btnCargarBDEspa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCargarBDEspa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarBDEspaActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(45, 164, 242));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAddEspacios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAddEspacios.setText("Agregar");
+        btnAddEspacios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAddEspacios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEspaciosActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminarEspa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminarEspa.setText("Eliminar");
+        btnEliminarEspa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddEspacios, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                .addComponent(btnEliminarEspa, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAddEspacios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEliminarEspa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -147,24 +171,24 @@ public class PanelEspacios extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfCapacidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -177,11 +201,11 @@ public class PanelEspacios extends javax.swing.JPanel {
                             .addGap(20, 20, 20)
                             .addComponent(jLabel14)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfBuscarIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCargarEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(377, 377, 377)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCargarBDEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -192,16 +216,16 @@ public class PanelEspacios extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfCapacidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -211,9 +235,9 @@ public class PanelEspacios extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfBuscarIdE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCargarEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCargarBDEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
 
@@ -229,48 +253,174 @@ public class PanelEspacios extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddEspaciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEspaciosActionPerformed
+        
+        Conexion objCon = new Conexion();
+        Connection conn = objCon.getConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        PreparedStatement ps = null;
+        tableEspacio.setModel(modelo);
+        String id_producto, disponible;
+        
+        
+        PreparedStatement select = null;
+        try{
+            
+            disponible = "Si";
+            ps = conn.prepareStatement("INSERT INTO espacios(id_espacios,nombre_e,capacidad_e,descripcion_e,disponible_e) "
+                    + "VALUES (?,?,?,?,?)");
+            
+            ps.setString(1,jtfIdE.getText());
+            ps.setString(2,jtfNombreE.getText());
+            ps.setString(3,jtfCapacidadE.getText());
+            ps.setString(4,jtfDescripcionE.getText());
+            ps.setString(5,disponible);
+            
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            Object[] fila = new Object[5];
+            fila[0] = jtfIdE.getText();
+            fila[1] = jtfNombreE.getText();
+            fila[2] = jtfCapacidadE.getText();
+            fila[3] = jtfDescripcionE.getText();
+            fila[4] = disponible;
+            
+            
+            modelo.addRow(fila);
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            System.out.println(ex);
+        }             
+        
+    }//GEN-LAST:event_btnAddEspaciosActionPerformed
+
+    private void btnCargarBDEspaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarBDEspaActionPerformed
+        
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableEspacio.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_espacios,nombre_e,capacidad_e,descripcion_e,disponible_e FROM espacios";
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Capacidad");
+            modelo.addColumn("Descripción");
+            modelo.addColumn("Disponible");
+            
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }//GEN-LAST:event_btnCargarBDEspaActionPerformed
+
+    private void btnCargarEspaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarEspaActionPerformed
+        
+        String campo = jtfBuscarIdE.getText();
+        String where = "";
+        
+        if (!"".equals(campo)){
+            where = " WHERE id_espacios = '" + campo + "';";
+        }
+        
+        
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableEspacio.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_espacios,nombre_e,capacidad_e,descripcion_e,disponible_e FROM espacios" + where;
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Capacidad");
+            modelo.addColumn("Descripción");
+            modelo.addColumn("Disponible");
+            
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }//GEN-LAST:event_btnCargarEspaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton btnAddEspacios;
+    private javax.swing.JButton btnCargarBDEspa;
+    private javax.swing.JButton btnCargarEspa;
+    private javax.swing.JButton btnEliminarEspa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jtfBuscarID;
-    private javax.swing.JTable tableLibro;
-    private javax.swing.JTable tableLibro1;
+    private javax.swing.JTextField jtfBuscarIdE;
+    private javax.swing.JTextField jtfCapacidadE;
+    private javax.swing.JTextField jtfDescripcionE;
+    private javax.swing.JTextField jtfIdE;
+    private javax.swing.JTextField jtfNombreE;
+    private javax.swing.JTable tableEspacio;
     // End of variables declaration//GEN-END:variables
 }

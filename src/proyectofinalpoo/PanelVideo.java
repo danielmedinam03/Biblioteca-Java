@@ -4,6 +4,15 @@
  */
 package proyectofinalpoo;
 
+import conexion.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Daniel Medina
@@ -29,21 +38,21 @@ public class PanelVideo extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableLibro = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        tableVideo = new javax.swing.JTable();
+        btnAgregarVideo = new javax.swing.JButton();
+        btnEliminarV = new javax.swing.JButton();
+        btnCargarIdV = new javax.swing.JButton();
+        btnCargarBDvideo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfCargarIdV = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jtfIdVideo = new javax.swing.JTextField();
+        jtfEquipoV = new javax.swing.JTextField();
+        jtfMarcaV = new javax.swing.JTextField();
+        jtfColorV = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
 
@@ -51,20 +60,20 @@ public class PanelVideo extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Video");
 
-        tableLibro.setModel(new javax.swing.table.DefaultTableModel(
+        tableVideo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Equipo", "Marca", "Color"
+                "ID", "Equipo", "Marca", "Color", "Disponible"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -75,19 +84,34 @@ public class PanelVideo extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableLibro);
+        jScrollPane1.setViewportView(tableVideo);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Agregar");
+        btnAgregarVideo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregarVideo.setText("Agregar");
+        btnAgregarVideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarVideoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Eliminar");
+        btnEliminarV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminarV.setText("Eliminar");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Cargar");
+        btnCargarIdV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarIdV.setText("Cargar");
+        btnCargarIdV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarIdVActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Cargar de la BD");
+        btnCargarBDvideo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarBDvideo.setText("Cargar de la BD");
+        btnCargarBDvideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarBDvideoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("ID video");
@@ -104,13 +128,18 @@ public class PanelVideo extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Color:");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfIdVideo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfIdVideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfIdVideoActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfEquipoV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfMarcaV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfColorV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,11 +151,11 @@ public class PanelVideo extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfCargarIdV, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnCargarIdV)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(btnCargarBDvideo)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,27 +163,27 @@ public class PanelVideo extends javax.swing.JPanel {
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfColorV, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfIdVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfMarcaV, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfEquipoV, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
+                                .addComponent(btnAgregarVideo)
                                 .addGap(31, 31, 31)
-                                .addComponent(jButton2)
+                                .addComponent(btnEliminarV)
                                 .addGap(52, 52, 52))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,26 +202,26 @@ public class PanelVideo extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarV, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfIdVideo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfEquipoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfMarcaV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfColorV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(btnCargarIdV)
+                    .addComponent(btnCargarBDvideo)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfCargarIdV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -208,12 +237,162 @@ public class PanelVideo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtfIdVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdVideoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfIdVideoActionPerformed
+
+    private void btnAgregarVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVideoActionPerformed
+
+        Conexion objCon = new Conexion();
+        Connection conn = objCon.getConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        PreparedStatement ps = null;
+        tableVideo.setModel(modelo);
+        String id_producto, disponible;
+        
+        
+        PreparedStatement select = null;
+        try{
+            
+            disponible = "Si";
+            ps = conn.prepareStatement("INSERT INTO video(id_video,equipo_v,color_v,marca_v,disponible_v) "
+                    + "VALUES (?,?,?,?,?)");
+            
+            ps.setString(1,jtfIdVideo.getText());
+            ps.setString(2,jtfEquipoV.getText());
+            ps.setString(3,jtfColorV.getText());
+            ps.setString(4,jtfMarcaV.getText());
+            ps.setString(5,disponible);
+            
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            Object[] fila = new Object[5];
+            fila[0] = jtfIdVideo.getText();
+            fila[1] = jtfEquipoV.getText();
+            fila[2] = jtfColorV.getText();
+            fila[3] = jtfMarcaV.getText();
+            fila[4] = disponible;
+            
+            
+            modelo.addRow(fila);
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            System.out.println(ex);
+        }    
+        
+    }//GEN-LAST:event_btnAgregarVideoActionPerformed
+
+    private void btnCargarBDvideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarBDvideoActionPerformed
+
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableVideo.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_video,equipo_v,color_v,marca_v,disponible_v FROM video";
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Equipo");
+            modelo.addColumn("Color");
+            modelo.addColumn("Marca");
+            modelo.addColumn("Disponible");
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }//GEN-LAST:event_btnCargarBDvideoActionPerformed
+
+    private void btnCargarIdVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarIdVActionPerformed
+
+        String campo = jtfCargarIdV.getText();
+        String where = "";
+        
+        if (!"".equals(campo)){
+            where = " WHERE id_video = '" + campo + "';";
+        }
+        
+        
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableVideo.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_video,equipo_v,color_v,marca_v,disponible_v FROM video" + where;
+            System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Equipo");
+            modelo.addColumn("Color");
+            modelo.addColumn("Marca");
+            modelo.addColumn("Disponible");
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+
+    }//GEN-LAST:event_btnCargarIdVActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnAgregarVideo;
+    private javax.swing.JButton btnCargarBDvideo;
+    private javax.swing.JButton btnCargarIdV;
+    private javax.swing.JButton btnEliminarV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,11 +401,11 @@ public class PanelVideo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTable tableLibro;
+    private javax.swing.JTextField jtfCargarIdV;
+    private javax.swing.JTextField jtfColorV;
+    private javax.swing.JTextField jtfEquipoV;
+    private javax.swing.JTextField jtfIdVideo;
+    private javax.swing.JTextField jtfMarcaV;
+    private javax.swing.JTable tableVideo;
     // End of variables declaration//GEN-END:variables
 }

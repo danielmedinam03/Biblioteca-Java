@@ -1,0 +1,23 @@
+Proyectos.
+1. Gestión académica de los estudiantes
+2. Agendamiento de citas Médicas
+3. Solicitud de servicios bibliotecarios (Libros, videos, espacios)
+4. Sistema de horarios Facultad de Ingeniería
+
+
+Herencia, polimorfismo, mvc, clases abstractas
+
+
+# solicitud de servicios bibliotecarios
+
+
+
+if(rbtn1.isSelected()==true)
+{
+ System.out.print("Seleccionó opción 1");
+}
+ButtonGroup grupo1 = new ButtonGroup();
+grupo1.add(rbtn1);
+grupo1.add(rbtn2);
+grupo1.add(rbtn3);
+

@@ -4,6 +4,15 @@
  */
 package proyectofinalpoo;
 
+import conexion.Conexion;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Daniel Medina
@@ -15,6 +24,7 @@ public class PanelLibros extends javax.swing.JPanel {
      */
     public PanelLibros() {
         initComponents();
+        
     }
 
     /**
@@ -30,23 +40,23 @@ public class PanelLibros extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtfBuscarID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCargarLib = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfIDLib = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jtfNombreLib = new javax.swing.JTextField();
+        jtfAutorLib = new javax.swing.JTextField();
+        jtfPaginasLib = new javax.swing.JTextField();
+        jtfAnioLib = new javax.swing.JTextField();
+        jtfEditorialLib = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnAgregarLib = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableLibro = new javax.swing.JTable();
 
@@ -74,20 +84,30 @@ public class PanelLibros extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Cargar desde BD");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarLib.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarLib.setText("Cargar desde BD");
+        btnCargarLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCargarLibActionPerformed(evt);
             }
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cargar ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Eliminar");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
@@ -104,48 +124,48 @@ public class PanelLibros extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Nro de Páginas:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfIDLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfIDLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtfIDLibActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Año:");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtfNombreLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfNombreLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtfNombreLibActionPerformed(evt);
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jtfAutorLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfAutorLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jtfAutorLibActionPerformed(evt);
             }
         });
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jtfPaginasLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfPaginasLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jtfPaginasLibActionPerformed(evt);
             }
         });
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jtfAnioLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfAnioLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jtfAnioLibActionPerformed(evt);
             }
         });
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jtfEditorialLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfEditorialLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jtfEditorialLibActionPerformed(evt);
             }
         });
 
@@ -154,24 +174,29 @@ public class PanelLibros extends javax.swing.JPanel {
         jLabel8.setText("Libreria UCC");
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Agregar");
-        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarLib.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAgregarLib.setText("Agregar");
+        btnAgregarLib.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarLib.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarLibActionPerformed(evt);
+            }
+        });
 
         tableLibro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Autor", "Editorial", "# de Paginas", "Año"
+                "ID", "Nombre", "Autor", "Editorial", "# de Paginas", "Año", "Disponible"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                true, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,7 +226,7 @@ public class PanelLibros extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnCargarLib)))
                 .addGap(18, 18, 18))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -209,19 +234,19 @@ public class PanelLibros extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfEditorialLib, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfPaginasLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfAnioLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(jButton4)
+                        .addComponent(btnAgregarLib)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(btnEliminar)
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -229,15 +254,15 @@ public class PanelLibros extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfIDLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addGap(12, 12, 12)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfNombreLib, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfAutorLib, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -247,22 +272,22 @@ public class PanelLibros extends javax.swing.JPanel {
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfIDLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfAutorLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfNombreLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfEditorialLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfPaginasLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(jtfAnioLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarLib)
+                    .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -270,7 +295,7 @@ public class PanelLibros extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jtfBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnCargarLib))
                 .addGap(49, 49, 49))
         );
 
@@ -290,40 +315,222 @@ public class PanelLibros extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfBuscarIDActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCargarLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarLibActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableLibro.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_libro, nombre_l, autor_l, editorial_l, nro_paginas_l, anio_l, disponible_l FROM libros";
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Autor");
+            modelo.addColumn("Editorial");
+            modelo.addColumn("# de Páginas");
+            modelo.addColumn("Año");
+            modelo.addColumn("Disponible");
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnCargarLibActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtfIDLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIDLibActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtfIDLibActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jtfNombreLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreLibActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jtfNombreLibActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jtfAutorLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAutorLibActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jtfAutorLibActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jtfPaginasLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPaginasLibActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jtfPaginasLibActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jtfAnioLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAnioLibActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jtfAnioLibActionPerformed
+
+    private void jtfEditorialLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEditorialLibActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfEditorialLibActionPerformed
+
+    private void btnAgregarLibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarLibActionPerformed
+        Conexion objCon = new Conexion();
+        Connection conn = objCon.getConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        PreparedStatement ps = null;
+        tableLibro.setModel(modelo);
+        String id_producto, disponible;
+        
+        
+        PreparedStatement select = null;
+        try{
+            /*
+            String sqlSelect = "SELECT id_producto FROM reserva WHERE id_producto =" +jtfIDLib.getText();
+            
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(sqlSelect);
+            
+            id_producto = result.getString("id_producto");
+            
+            if (id_producto==jtfIDLib.getText()){
+                disponible = "No";
+            }else{
+                disponible = "Si";
+            }
+            */
+            disponible = "Si";
+            ps = conn.prepareStatement("INSERT INTO libros(id_libro,nombre_l,autor_l,editorial_l,nro_paginas_l,anio_l,disponible_l) "
+                    + "VALUES (?,?,?,?,?,?,?)");
+            
+            ps.setString(1,jtfIDLib.getText());
+            ps.setString(2,jtfNombreLib.getText());
+            ps.setString(3,jtfAutorLib.getText());
+            ps.setString(4,jtfEditorialLib.getText());
+            ps.setString(5,jtfPaginasLib.getText());
+            ps.setString(6,jtfAnioLib.getText());
+            ps.setString(7,disponible);
+            
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            Object[] fila = new Object[7];
+            fila[0] = jtfIDLib.getText();
+            fila[1] = jtfNombreLib.getText();
+            fila[2] = jtfAutorLib.getText();
+            fila[3] = jtfEditorialLib.getText();
+            fila[4] = jtfPaginasLib.getText();
+            fila[5] = jtfAnioLib.getText();
+            fila[6] = disponible;
+            
+            modelo.addRow(fila);
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_btnAgregarLibActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        String campo = jtfBuscarID.getText();
+        String where = "";
+        
+        if (!"".equals(campo)){
+            where = " WHERE id_libro = '" + campo + "';";
+        }
+        
+        
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            tableLibro.setModel(modelo);
+            
+            PreparedStatement ps =null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_libro, nombre_l, autor_l, editorial_l, nro_paginas_l, anio_l, disponible_l FROM libros " + where;
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            //Pasando resultado de la consulta
+            ResultSetMetaData rsMd = rs.getMetaData();
+            
+            //Cuantos datos regresa esa consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Autor");
+            modelo.addColumn("Editorial");
+            modelo.addColumn("# de Páginas");
+            modelo.addColumn("Año");
+            modelo.addColumn("Disponible");
+            
+            //Recorrer
+            while(rs.next()){
+            
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i = 0; i<cantidadColumnas;i++){
+                    filas[i] = rs.getObject(i+1);
+                    
+                }
+                modelo.addRow(filas);
+            }
+                     
+            
+            
+        }catch (SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DefaultTableModel modelo = new DefaultTableModel();
+        tableLibro.setModel(modelo);
+        PreparedStatement ps = null;
+        
+        try{
+            
+            Conexion objCon = new Conexion();
+            Connection conn = objCon.getConexion();
+            
+            int Fila = tableLibro.getSelectedRow();
+            String idLibro = tableLibro.getValueAt(Fila,0).toString();
+            
+            ps = conn.prepareStatement("DELETE FROM libros WHERE id_libro=?");
+            ps.setString(1, idLibro);
+            ps.execute();
+
+            modelo.removeRow(Fila);
+            
+        }catch(SQLException ex){
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregarLib;
+    private javax.swing.JButton btnCargarLib;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -335,13 +542,13 @@ public class PanelLibros extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jtfAnioLib;
+    private javax.swing.JTextField jtfAutorLib;
     private javax.swing.JTextField jtfBuscarID;
+    private javax.swing.JTextField jtfEditorialLib;
+    private javax.swing.JTextField jtfIDLib;
+    private javax.swing.JTextField jtfNombreLib;
+    private javax.swing.JTextField jtfPaginasLib;
     private javax.swing.JTable tableLibro;
     // End of variables declaration//GEN-END:variables
 }

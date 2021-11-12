@@ -35,12 +35,8 @@ public class PanelInicio extends javax.swing.JPanel {
 
         content1 = new javax.swing.JPanel();
         btnContinuar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jtfNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jtfID = new javax.swing.JTextField();
+        jtfIDReserva = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jtfPrograma = new javax.swing.JTextField();
         rbtnLibros = new javax.swing.JRadioButton();
         rbtnVideo = new javax.swing.JRadioButton();
         rbtnEspacios = new javax.swing.JRadioButton();
@@ -58,26 +54,10 @@ public class PanelInicio extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel4.setText("Programa:");
-
-        jtfNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setText("Nombre:");
-
-        jtfID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtfIDReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel5.setText("ID:");
-
-        jtfPrograma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtfPrograma.setName(""); // NOI18N
-        jtfPrograma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfProgramaActionPerformed(evt);
-            }
-        });
 
         rbtnLibros.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rbtnLibros.setText("Libros");
@@ -101,7 +81,7 @@ public class PanelInicio extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout content1Layout = new javax.swing.GroupLayout(content1);
@@ -109,72 +89,55 @@ public class PanelInicio extends javax.swing.JPanel {
         content1Layout.setHorizontalGroup(
             content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content1Layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
+                        .addGap(0, 18, Short.MAX_VALUE)
+                        .addComponent(rbtnLibros)
+                        .addGap(52, 52, 52)
+                        .addComponent(rbtnVideo)
+                        .addGap(50, 50, 50)
+                        .addComponent(rbtnEspacios)
+                        .addGap(202, 202, 202))
                     .addGroup(content1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(content1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jtfPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(221, Short.MAX_VALUE))
-            .addGroup(content1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(303, 303, 303))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                        .addComponent(rbtnLibros)
-                        .addGap(49, 49, 49)
-                        .addComponent(rbtnVideo)
-                        .addGap(48, 48, 48)
-                        .addComponent(rbtnEspacios)
-                        .addGap(237, 237, 237))))
+                                .addGap(86, 86, 86)
+                                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(content1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(278, 278, 278))
         );
         content1Layout.setVerticalGroup(
             content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(content1Layout.createSequentialGroup()
                 .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(content1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(73, 73, 73)
+                        .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnVideo)
                             .addComponent(rbtnEspacios)
+                            .addComponent(rbtnVideo)
                             .addComponent(rbtnLibros))
-                        .addGap(29, 29, 29)
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(content1Layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -215,11 +178,6 @@ public class PanelInicio extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnContinuarActionPerformed
-
-    private void jtfProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfProgramaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfProgramaActionPerformed
-
     private void ShowPanel(JPanel p){
         
         p.setSize(781, 414);
@@ -236,14 +194,10 @@ public class PanelInicio extends javax.swing.JPanel {
     private javax.swing.JButton btnContinuar;
     private javax.swing.JPanel content1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jtfID;
-    private javax.swing.JTextField jtfNombre;
-    private javax.swing.JTextField jtfPrograma;
+    private javax.swing.JTextField jtfIDReserva;
     private javax.swing.JRadioButton rbtnEspacios;
     private javax.swing.JRadioButton rbtnLibros;
     private javax.swing.JRadioButton rbtnVideo;

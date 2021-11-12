@@ -18,8 +18,8 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        PanelInicio panelInicio = new PanelInicio();
-        ShowPanel(panelInicio);
+        PanelRegistro panelRegistro = new PanelRegistro();
+        ShowPanel(panelRegistro);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Inicio extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 777, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +76,7 @@ public class Inicio extends javax.swing.JFrame {
 
         btnFinalInicio1.setBackground(new java.awt.Color(204, 204, 204));
         btnFinalInicio1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnFinalInicio1.setText("Suministrados");
+        btnFinalInicio1.setText("Reservas");
         btnFinalInicio1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnFinalInicio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +92,8 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInicioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnFinalInicio1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(btnFinalInicio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76))
                     .addGroup(panelInicioLayout.createSequentialGroup()
@@ -102,7 +102,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel2)
                 .addGap(52, 52, 52))
-            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelInicioLayout.setVerticalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +126,7 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,12 +139,15 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalInicioActionPerformed
-        PanelInicio panelInicio = new PanelInicio();
-        ShowPanel(panelInicio);
+        PanelRegistro panelRegistro = new PanelRegistro();
+        ShowPanel(panelRegistro);
     }//GEN-LAST:event_btnFinalInicioActionPerformed
 
     private void btnFinalInicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalInicio1ActionPerformed
-        // TODO add your handling code here:
+        
+        PanelReserva panelReserva = new PanelReserva();
+        ShowPanel(panelReserva);
+        
     }//GEN-LAST:event_btnFinalInicio1ActionPerformed
 
     private void ShowPanel(JPanel p){

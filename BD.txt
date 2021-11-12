@@ -1,0 +1,23 @@
+Libro
+
+ID
+Nombre
+Autor
+Editorial
+Nro de Paginas
+Año
+
+Video
+
+ID_Video
+Equipo
+Marca
+Color
+
+Espacios
+
+ID_Espacio
+Nombre
+Capacidad
+Descripcion
+
