@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daniel Medina
  */
-public class PanelRegistro extends javax.swing.JPanel {
+public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
 
     /**
      * Creates new form PanelRegistro
@@ -51,10 +51,16 @@ public class PanelRegistro extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
         jLabel5.setText("ID:");
 
+        jtfIDRegistro.setColumns(5);
         jtfIDRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtfIDRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfIDRegistroActionPerformed(evt);
+            }
+        });
+        jtfIDRegistro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfIDRegistroKeyTyped(evt);
             }
         });
 
@@ -84,7 +90,7 @@ public class PanelRegistro extends javax.swing.JPanel {
         });
 
         btnYaRegistrado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnYaRegistrado.setText("Click si ya estas registrado");
+        btnYaRegistrado.setText("Iniciar Sesión");
         btnYaRegistrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnYaRegistradoActionPerformed(evt);
@@ -123,11 +129,11 @@ public class PanelRegistro extends javax.swing.JPanel {
                             .addComponent(jtfCampus, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(190, 190, 190))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
-                        .addComponent(btnYaRegistrado)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
                         .addComponent(btnRegistro)
-                        .addGap(252, 252, 252))))
+                        .addGap(252, 252, 252))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
+                        .addComponent(btnYaRegistrado)
+                        .addGap(18, 18, 18))))
         );
         contentRegistroLayout.setVerticalGroup(
             contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +159,7 @@ public class PanelRegistro extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnYaRegistrado, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -172,7 +178,8 @@ public class PanelRegistro extends javax.swing.JPanel {
 
     
     
-    private void ShowPanel(JPanel p){
+    @Override
+    public void ShowPanel(JPanel p){
         
         p.setSize(781, 414);
         p.setLocation(0,0);
@@ -193,7 +200,7 @@ public class PanelRegistro extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         PanelInicio panelInicio = new PanelInicio();
-        ShowPanel(panelInicio);
+        
         
         DefaultTableModel modelo = new DefaultTableModel();
         PreparedStatement ps = null;
@@ -201,35 +208,26 @@ public class PanelRegistro extends javax.swing.JPanel {
         try{
             Conexion objCon = new Conexion();
             Connection conn = objCon.getConexion();
-            ps = conn.prepareStatement("INSERT INTO usuario(id_usuario,nombre_u,programa_u,campus_u) "
-                    + "VALUES (?,?,?,?)");
+            if (!jtfIDRegistro.getText().equals("") && !jtfNombre.getText().equals("")
+                && !jtfPrograma.getText().equals("") && !jtfCampus.getText().equals(""))
+            {
+                ps = conn.prepareStatement("INSERT INTO usuario(id_usuario,nombre_u,programa_u,campus_u) "
+                        + "VALUES (?,?,?,?)");
+
+                ps.setString(1,jtfIDRegistro.getText());
+                ps.setString(2,jtfNombre.getText());
+                ps.setString(3,jtfPrograma.getText());
+                ps.setString(4,jtfCampus.getText());
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
+                ShowPanel(panelInicio);
+            }else{
+                JOptionPane.showMessageDialog(null, "Error llene todos los campos.");
+            }
             
-            ps.setString(1,jtfIDRegistro.getText());
-            ps.setString(2,jtfNombre.getText());
-            ps.setString(3,jtfPrograma.getText());
-            ps.setString(4,jtfCampus.getText());
-            
-            
-            
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
-            /*
-            Object[] fila = new Object[7];
-            fila[0] = txtAlias.getText();
-            fila[1] = txtNombres.getText();
-            fila[2] = txtApellidos.getText();
-            fila[3] = txtEmail.getText();
-            fila[4] = txtCelular.getText();
-            fila[5] = txtClave.getText();
-            fila[6] = txtFechaNto.getText();
-            
-            modelo.addRow(fila);
-            */
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al registrar el usuario, ya está" + 
-                    " otra persona registrada con este mismo ID o verifique que el ID no" +
-                    " supere los 5 carácteres");
+            JOptionPane.showMessageDialog(null, "ID ya se encuentra registrado.");
             System.out.println(ex);
         }
         
@@ -250,6 +248,15 @@ public class PanelRegistro extends javax.swing.JPanel {
     private void jtfCampusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCampusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfCampusActionPerformed
+
+    private void jtfIDRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIDRegistroKeyTyped
+        
+        if(jtfIDRegistro.getText().length() >= 5)
+    {
+        evt.consume();
+    }
+        
+    }//GEN-LAST:event_jtfIDRegistroKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daniel Medina
  */
-public class PanelEspacios extends javax.swing.JPanel {
+public class PanelEspacios extends javax.swing.JPanel  {
 
     /**
      * Creates new form PanelEspacios
@@ -101,6 +101,11 @@ public class PanelEspacios extends javax.swing.JPanel {
         jLabel5.setText("Descripción:");
 
         jtfIdE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfIdE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfIdEKeyTyped(evt);
+            }
+        });
 
         jtfNombreE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -261,25 +266,29 @@ public class PanelEspacios extends javax.swing.JPanel {
         PreparedStatement ps = null;
         tableEspacio.setModel(modelo);
         String id_producto, disponible;
-        
-        
+
         PreparedStatement select = null;
         try{
             
             disponible = "Si";
-            ps = conn.prepareStatement("INSERT INTO espacios(id_espacios,nombre_e,capacidad_e,descripcion_e,disponible_e) "
-                    + "VALUES (?,?,?,?,?)");
             
-            ps.setString(1,jtfIdE.getText());
-            ps.setString(2,jtfNombreE.getText());
-            ps.setString(3,jtfCapacidadE.getText());
-            ps.setString(4,jtfDescripcionE.getText());
-            ps.setString(5,disponible);
+            if (!jtfIdE.getText().equals("")){
+                ps = conn.prepareStatement("INSERT INTO espacios(id_espacios,nombre_e,capacidad_e,descripcion_e,disponible_e) "
+                        + "VALUES (?,?,?,?,?)");
+
+                ps.setString(1,jtfIdE.getText());
+                ps.setString(2,jtfNombreE.getText());
+                ps.setString(3,jtfCapacidadE.getText());
+                ps.setString(4,jtfDescripcionE.getText());
+                ps.setString(5,disponible);
+
+                ps.execute();
+
+                JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            }else{
+                JOptionPane.showMessageDialog(null, "Producto NO guardado, intentelo nuevamente.");
+            }
             
-            
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
             Object[] fila = new Object[5];
             fila[0] = jtfIdE.getText();
             fila[1] = jtfNombreE.getText();
@@ -291,7 +300,7 @@ public class PanelEspacios extends javax.swing.JPanel {
             modelo.addRow(fila);
 
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto, el ID ya existe.");
             System.out.println(ex);
         }             
         
@@ -400,6 +409,15 @@ public class PanelEspacios extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnCargarEspaActionPerformed
+
+    private void jtfIdEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdEKeyTyped
+
+    if(jtfIdE.getText().length() >= 10)
+    {
+        evt.consume();
+    }
+
+    }//GEN-LAST:event_jtfIdEKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

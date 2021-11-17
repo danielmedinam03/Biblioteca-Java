@@ -130,6 +130,11 @@ public class PanelLibros extends javax.swing.JPanel {
                 jtfIDLibActionPerformed(evt);
             }
         });
+        jtfIDLib.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfIDLibKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Año:");
@@ -159,6 +164,11 @@ public class PanelLibros extends javax.swing.JPanel {
         jtfAnioLib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfAnioLibActionPerformed(evt);
+            }
+        });
+        jtfAnioLib.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfAnioLibKeyTyped(evt);
             }
         });
 
@@ -398,35 +408,26 @@ public class PanelLibros extends javax.swing.JPanel {
         
         PreparedStatement select = null;
         try{
-            /*
-            String sqlSelect = "SELECT id_producto FROM reserva WHERE id_producto =" +jtfIDLib.getText();
             
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(sqlSelect);
-            
-            id_producto = result.getString("id_producto");
-            
-            if (id_producto==jtfIDLib.getText()){
-                disponible = "No";
-            }else{
-                disponible = "Si";
-            }
-            */
             disponible = "Si";
-            ps = conn.prepareStatement("INSERT INTO libros(id_libro,nombre_l,autor_l,editorial_l,nro_paginas_l,anio_l,disponible_l) "
-                    + "VALUES (?,?,?,?,?,?,?)");
-            
-            ps.setString(1,jtfIDLib.getText());
-            ps.setString(2,jtfNombreLib.getText());
-            ps.setString(3,jtfAutorLib.getText());
-            ps.setString(4,jtfEditorialLib.getText());
-            ps.setString(5,jtfPaginasLib.getText());
-            ps.setString(6,jtfAnioLib.getText());
-            ps.setString(7,disponible);
-            
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            if(!jtfIDLib.getText().equals("")){
+                ps = conn.prepareStatement("INSERT INTO libros(id_libro,nombre_l,autor_l,editorial_l,nro_paginas_l,anio_l,disponible_l) "
+                        + "VALUES (?,?,?,?,?,?,?)");
+
+                ps.setString(1,jtfIDLib.getText());
+                ps.setString(2,jtfNombreLib.getText());
+                ps.setString(3,jtfAutorLib.getText());
+                ps.setString(4,jtfEditorialLib.getText());
+                ps.setString(5,jtfPaginasLib.getText());
+                ps.setString(6,jtfAnioLib.getText());
+                ps.setString(7,disponible);
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+
+            }else{
+                JOptionPane.showMessageDialog(null, "Producto NO guardado, intentelo nuevamente.");
+            }
             Object[] fila = new Object[7];
             fila[0] = jtfIDLib.getText();
             fila[1] = jtfNombreLib.getText();
@@ -439,7 +440,7 @@ public class PanelLibros extends javax.swing.JPanel {
             modelo.addRow(fila);
 
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto, el ID ya existe.");
             System.out.println(ex);
         }
     }//GEN-LAST:event_btnAgregarLibActionPerformed
@@ -524,6 +525,21 @@ public class PanelLibros extends javax.swing.JPanel {
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jtfIDLibKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIDLibKeyTyped
+
+        if(jtfIDLib.getText().length() >= 10){
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_jtfIDLibKeyTyped
+
+    private void jtfAnioLibKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnioLibKeyTyped
+
+        if(jtfAnioLib.getText().length() >= 4){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfAnioLibKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

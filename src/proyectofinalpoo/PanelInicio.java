@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author Daniel Medina
  */
-public class PanelInicio extends javax.swing.JPanel {
+public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
 
     /**
      * Creates new form PanelInicio
@@ -178,7 +178,9 @@ public class PanelInicio extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnContinuarActionPerformed
-    private void ShowPanel(JPanel p){
+    
+    @Override
+    public void ShowPanel(JPanel p){
         
         p.setSize(781, 414);
         p.setLocation(0,0);

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  *
  * @author Daniel Medina
  */
-public class Inicio extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame implements MostrarPanel{
 
     /**
      * Creates new form Inicio
@@ -149,8 +149,8 @@ public class Inicio extends javax.swing.JFrame {
         ShowPanel(panelReserva);
         
     }//GEN-LAST:event_btnFinalInicio1ActionPerformed
-
-    private void ShowPanel(JPanel p){
+    @Override
+    public void ShowPanel(JPanel p){
         
         p.setSize(781, 414);
         p.setLocation(0,0);
@@ -202,4 +202,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panelInicio;
     // End of variables declaration//GEN-END:variables
+
+    
+    
 }

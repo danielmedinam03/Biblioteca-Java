@@ -134,6 +134,11 @@ public class PanelVideo extends javax.swing.JPanel {
                 jtfIdVideoActionPerformed(evt);
             }
         });
+        jtfIdVideo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfIdVideoKeyTyped(evt);
+            }
+        });
 
         jtfEquipoV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -253,21 +258,25 @@ public class PanelVideo extends javax.swing.JPanel {
         
         PreparedStatement select = null;
         try{
-            
             disponible = "Si";
-            ps = conn.prepareStatement("INSERT INTO video(id_video,equipo_v,color_v,marca_v,disponible_v) "
-                    + "VALUES (?,?,?,?,?)");
+            if(!jtfIdVideo.getText().equals("")){
+                 
+                ps = conn.prepareStatement("INSERT INTO video(id_video,equipo_v,color_v,marca_v,disponible_v) "
+                        + "VALUES (?,?,?,?,?)");
+
+                ps.setString(1,jtfIdVideo.getText());
+                ps.setString(2,jtfEquipoV.getText());
+                ps.setString(3,jtfColorV.getText());
+                ps.setString(4,jtfMarcaV.getText());
+                ps.setString(5,disponible);
+
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+            }else{
+                JOptionPane.showMessageDialog(null, "Producto NO guardado, intentelo nuevamente.");
+            }
             
-            ps.setString(1,jtfIdVideo.getText());
-            ps.setString(2,jtfEquipoV.getText());
-            ps.setString(3,jtfColorV.getText());
-            ps.setString(4,jtfMarcaV.getText());
-            ps.setString(5,disponible);
-            
-            
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
             Object[] fila = new Object[5];
             fila[0] = jtfIdVideo.getText();
             fila[1] = jtfEquipoV.getText();
@@ -279,7 +288,7 @@ public class PanelVideo extends javax.swing.JPanel {
             modelo.addRow(fila);
 
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            JOptionPane.showMessageDialog(null, "Error al guardar el producto, el ID ya existe.");
             System.out.println(ex);
         }    
         
@@ -386,6 +395,15 @@ public class PanelVideo extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnCargarIdVActionPerformed
+
+    private void jtfIdVideoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdVideoKeyTyped
+
+        if(jtfIdVideo.getText().length() >= 10)
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jtfIdVideoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
