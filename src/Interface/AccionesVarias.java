@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package proyectofinalpoo;
-
-import javax.swing.JPanel;
+package Interface;
 
 /**
  *
  * @author Daniel Medina
  */
-public interface MostrarPanel {
+public interface AccionesVarias {
     
-    void ShowPanel(JPanel p);
+    void LimpiarTodo();
+    void CargarData();
+    void Editar();
+    void Eliminar();
     
 }

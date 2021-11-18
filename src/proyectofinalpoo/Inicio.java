@@ -4,6 +4,7 @@
  */
 package proyectofinalpoo;
 
+import Interface.MostrarPanel;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -36,7 +37,7 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
         content = new javax.swing.JPanel();
         btnFinalInicio = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnFinalInicio1 = new javax.swing.JButton();
+        btnReservas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,13 +75,13 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinalpoo/ucc22.png"))); // NOI18N
 
-        btnFinalInicio1.setBackground(new java.awt.Color(204, 204, 204));
-        btnFinalInicio1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnFinalInicio1.setText("Reservas");
-        btnFinalInicio1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnFinalInicio1.addActionListener(new java.awt.event.ActionListener() {
+        btnReservas.setBackground(new java.awt.Color(204, 204, 204));
+        btnReservas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReservas.setText("Reservas");
+        btnReservas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalInicio1ActionPerformed(evt);
+                btnReservasActionPerformed(evt);
             }
         });
 
@@ -92,7 +93,7 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
                 .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInicioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnFinalInicio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76))
@@ -116,7 +117,7 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFinalInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,12 +144,12 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
         ShowPanel(panelRegistro);
     }//GEN-LAST:event_btnFinalInicioActionPerformed
 
-    private void btnFinalInicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalInicio1ActionPerformed
+    private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
         
         PanelReserva panelReserva = new PanelReserva();
         ShowPanel(panelReserva);
         
-    }//GEN-LAST:event_btnFinalInicio1ActionPerformed
+    }//GEN-LAST:event_btnReservasActionPerformed
     @Override
     public void ShowPanel(JPanel p){
         
@@ -196,7 +197,7 @@ public class Inicio extends javax.swing.JFrame implements MostrarPanel{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalInicio;
-    private javax.swing.JButton btnFinalInicio1;
+    private javax.swing.JButton btnReservas;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
