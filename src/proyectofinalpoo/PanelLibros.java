@@ -12,6 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -37,11 +41,12 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         PopMenu = new javax.swing.JPopupMenu();
         menuEliminar = new javax.swing.JMenuItem();
         menuEditar = new javax.swing.JMenuItem();
+        menuReservar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtfBuscarID = new javax.swing.JTextField();
         btnCargarLib = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCargarLibro = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -88,6 +93,14 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         });
         PopMenu.add(menuEditar);
 
+        menuReservar.setText("Reservar");
+        menuReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReservarActionPerformed(evt);
+            }
+        });
+        PopMenu.add(menuReservar);
+
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
         jPanel1.setForeground(new java.awt.Color(34, 95, 255));
 
@@ -109,11 +122,11 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Cargar ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarLibro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargarLibro.setText("Cargar ");
+        btnCargarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCargarLibroActionPerformed(evt);
             }
         });
 
@@ -249,7 +262,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
                 .addGap(6, 6, 6)
                 .addComponent(jtfBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCargarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCargarLib)
                 .addGap(18, 18, 18))
@@ -333,7 +346,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
+                    .addComponent(btnCargarLibro)
                     .addComponent(btnCargarLib))
                 .addGap(95, 95, 95))
         );
@@ -437,7 +450,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         
     }//GEN-LAST:event_btnAgregarLibActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCargarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarLibroActionPerformed
 
         String campo = jtfBuscarID.getText();
         String where = "";
@@ -492,7 +505,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             System.err.println(ex.toString());
         }
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCargarLibroActionPerformed
 
     private void jtfIDLibKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIDLibKeyTyped
 
@@ -517,6 +530,125 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         Editar();
     }//GEN-LAST:event_menuEditarActionPerformed
 
+    private void menuReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservarActionPerformed
+
+        Reservar();
+        
+    }//GEN-LAST:event_menuReservarActionPerformed
+
+    public void Reservar() {
+
+        String label = PanelLibros.labelRecibe.getText();  //Valor del ID del usuario
+        /*--------------------------------------------*/
+        double num1 = 1 + Math.random();
+        double num2 = 1.1 + Math.random();
+        double suma = num1 + num2;
+        DecimalFormat df = new DecimalFormat("#.####");
+        String random = df.format(suma) + "-L"; //Valor del ID reserva
+        /*--------------------------------------------*/
+
+        try {
+            PreparedStatement ps = null;
+
+            Statement reserva = null;
+            Statement libro = null;
+
+            ResultSet rs = null;
+            ResultSet rs2 = null;
+
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+
+            String id_lib = null;
+            String id_prod = null;
+            String id_libro, sql, sql1, tipo_reserva, id_reserva;
+
+            int fila = tableLibro.getSelectedRow();
+            //int fila2 = PanelReserva.tableReserva.getSelectedRow();
+
+            id_libro = tableLibro.getValueAt(fila, 0).toString();
+            //id_reserva = PanelReserva.tableReserva.getValueAt(fila, 0).toString();
+
+            sql1 = "SELECT id_libro FROM libros " + "WHERE id_libro=" + id_libro;
+            String sql2 = "SELECT id_producto FROM reserva" + " WHERE id_producto=" + id_libro;
+
+            libro = con.createStatement();
+            rs = libro.executeQuery(sql1);
+
+            reserva = con.createStatement();
+            rs2 = reserva.executeQuery(sql2);
+
+            while (rs.next()) {
+                id_lib = rs.getString("id_libro"); //ID del producto a reservar
+                
+            }
+            while(rs2.next()){
+                id_prod = rs2.getString("id_producto");
+                
+            }
+            
+            /*-----------------------------------------------*/
+            tipo_reserva = "Libro"; //Tipo de producto
+            /*-----------------------------------------------*/
+            DateTimeFormatter fomato = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+
+            LocalDateTime salidaNow = LocalDateTime.now();
+            LocalDate salidaDate = LocalDate.now();
+
+            String formatSalida = salidaNow.format(fomato); //SALIDA
+            /*----------------------------------------------*/
+            DateTimeFormatter fomato2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate entrega;
+            entrega = salidaDate.plusDays(5); //Entrega
+            String formatEntrega = entrega.format(fomato2);
+            /*----------------------------------------------*/
+            
+            if (id_lib.equals(id_prod)){
+                JOptionPane.showMessageDialog(null, "El Libro se encuentra disponible hasta: " + entrega);
+            }else{
+
+                Conexion objCon = new Conexion();
+
+                DefaultTableModel modelo = new DefaultTableModel();
+                PanelReserva reservar = new PanelReserva();
+                reservar.tableReserva.setModel(modelo);
+                String disponible;
+
+                sql = "INSERT INTO reserva(id_reserva,id_usuario,id_producto,tipo_reserva,fecha_salida,fecha_entrega) " + ""
+                        + "VALUES (?,?,?,?,?,?)";
+
+                disponible = "No";
+                ps = con.prepareStatement(sql);
+
+                ps.setString(1, random);
+                ps.setString(2, label);
+                ps.setString(3, id_lib);
+                ps.setString(4, tipo_reserva);
+                ps.setString(5, formatSalida);
+                ps.setString(6, formatEntrega);
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Producto reservado con exito");
+
+                PreparedStatement psEspacios = null;
+
+                //String id_espacios = tableEspacio.getValueAt(fila, 0).toString();
+                String sql3 = "UPDATE libros SET disponible_l='" + disponible + "' WHERE id_libro=" + id_libro;
+
+                psEspacios = con.prepareStatement(sql3);
+                psEspacios.executeUpdate();
+
+                CargarData();
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
+        }
+    }
+
+    
     @Override
     public void Editar(){
         int fila = tableLibro.getSelectedRow();
@@ -571,10 +703,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         
     }
     
-    public void Reserva(){
-        
-    }
-    
+   
     
     @Override
     public void CargarData() {
@@ -644,7 +773,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
     private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JButton btnAgregarLib;
     private javax.swing.JButton btnCargarLib;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCargarLibro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -667,6 +796,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
     public static javax.swing.JLabel labelRecibe;
     private javax.swing.JMenuItem menuEditar;
     private javax.swing.JMenuItem menuEliminar;
+    private javax.swing.JMenuItem menuReservar;
     private javax.swing.JTable tableLibro;
     // End of variables declaration//GEN-END:variables
 }

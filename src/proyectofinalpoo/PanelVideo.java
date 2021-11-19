@@ -11,6 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Daniel Medina
  */
-public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
+public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
 
     /**
      * Creates new form PanelVideo
@@ -35,6 +40,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
         PopMenuElimEdi = new javax.swing.JPopupMenu();
         menuEliminarVideo = new javax.swing.JMenuItem();
         menuEditarVideo = new javax.swing.JMenuItem();
+        menuReserva = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -70,6 +76,14 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
             }
         });
         PopMenuElimEdi.add(menuEditarVideo);
+
+        menuReserva.setText("Reserva");
+        menuReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReservaActionPerformed(evt);
+            }
+        });
+        PopMenuElimEdi.add(menuReserva);
 
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
 
@@ -286,106 +300,101 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
         PreparedStatement ps = null;
         tableVideo.setModel(modelo);
         String id_producto, disponible;
-        
-        
+
         PreparedStatement select = null;
-        try{
+        try {
             disponible = "Si";
-            if(!jtfIdVideo.getText().equals("")){
-                 
+            if (!jtfIdVideo.getText().equals("")) {
+                
                 ps = conn.prepareStatement("INSERT INTO video(id_video,equipo_v,color_v,marca_v,disponible_v) "
                         + "VALUES (?,?,?,?,?)");
 
-                ps.setString(1,jtfIdVideo.getText());
-                ps.setString(2,jtfEquipoV.getText());
-                ps.setString(3,jtfColorV.getText());
-                ps.setString(4,jtfMarcaV.getText());
-                ps.setString(5,disponible);
+                ps.setString(1, jtfIdVideo.getText());
+                ps.setString(2, jtfEquipoV.getText());
+                ps.setString(3, jtfColorV.getText());
+                ps.setString(4, jtfMarcaV.getText());
+                ps.setString(5, disponible);
 
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Producto guardado con exito");
-                
+
                 CargarData();
                 LimpiarTodo();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Producto NO guardado, intentelo nuevamente.");
                 CargarData();
                 LimpiarTodo();
             }
-            
+
             Object[] fila = new Object[5];
             fila[0] = jtfIdVideo.getText();
             fila[1] = jtfEquipoV.getText();
             fila[2] = jtfColorV.getText();
             fila[3] = jtfMarcaV.getText();
             fila[4] = disponible;
-            
-            
+
             modelo.addRow(fila);
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar el producto, el ID ya existe.");
             System.out.println(ex);
             CargarData();
             LimpiarTodo();
-        }    
-        
+        }
+
     }//GEN-LAST:event_btnAgregarVideoActionPerformed
 
     private void btnCargarBDvideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarBDvideoActionPerformed
         CargarData();
     }//GEN-LAST:event_btnCargarBDvideoActionPerformed
-   
+
     private void btnCargarIdVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarIdVActionPerformed
 
         String campo = jtfCargarIdV.getText();
         String where = "";
-        
-        if (!"".equals(campo)){
+
+        if (!"".equals(campo)) {
             where = " WHERE id_video = '" + campo + "';";
         }
-        
-        
-        try{
+
+        try {
             DefaultTableModel modelo = new DefaultTableModel();
             tableVideo.setModel(modelo);
-            
-            PreparedStatement ps =null;
+
+            PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
-            
+
             String sql = "SELECT id_video,equipo_v,color_v,marca_v,disponible_v FROM video" + where;
             System.out.println(sql);
             ps = con.prepareStatement(sql);
-            rs =ps.executeQuery();
+            rs = ps.executeQuery();
             //Pasando resultado de la consulta
             ResultSetMetaData rsMd = rs.getMetaData();
-            
+
             //Cuantos datos regresa esa consulta
             int cantidadColumnas = rsMd.getColumnCount();
-            
+
             modelo.addColumn("ID");
             modelo.addColumn("Equipo");
             modelo.addColumn("Color");
-            modelo.addColumn("Marca"); 
+            modelo.addColumn("Marca");
             modelo.addColumn("Disponible");
-            
+
             //Recorrer
-            while(rs.next()){
-            
+            while (rs.next()) {
+
                 Object[] filas = new Object[cantidadColumnas];
-                
-                for(int i = 0; i<cantidadColumnas;i++){
-                    filas[i] = rs.getObject(i+1);
-                    
+
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    filas[i] = rs.getObject(i + 1);
+
                 }
                 modelo.addRow(filas);
             }
-                     
-            
-            
-        }catch (SQLException ex){
+
+        } catch (SQLException ex) {
             System.err.println(ex.toString());
         }
 
@@ -393,11 +402,10 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
 
     private void jtfIdVideoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdVideoKeyTyped
 
-        if(jtfIdVideo.getText().length() >= 10)
-        {
+        if (jtfIdVideo.getText().length() >= 10) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtfIdVideoKeyTyped
 
     private void menuEliminarVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEliminarVideoActionPerformed
@@ -409,11 +417,124 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
         Editar();
     }//GEN-LAST:event_menuEditarVideoActionPerformed
 
-    
+    private void menuReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservaActionPerformed
+
+        Reservar();
+
+    }//GEN-LAST:event_menuReservaActionPerformed
+
+    public void Reservar() {
+
+        String label = PanelVideo.labelRecibe.getText();  //Valor del ID del usuario
+        /*--------------------------------------------*/
+        double num1 = 1 + Math.random();
+        double num2 = 1.1 + Math.random();
+        double suma = num1 + num2;
+        DecimalFormat df = new DecimalFormat("#.####");
+        String random = df.format(suma) + "-V"; //Valor del ID reserva
+        /*--------------------------------------------*/
+
+        try {
+            PreparedStatement ps = null;
+
+            Statement reserva = null;
+            Statement video = null;
+
+            ResultSet rs = null;
+            ResultSet rs2 = null;
+
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+
+            String id_vid = null;
+            String id_prod = null;
+            String id_video, sql, sql1, tipo_reserva, id_reserva;
+
+            int fila = tableVideo.getSelectedRow();
+
+            id_video = tableVideo.getValueAt(fila, 0).toString();
+
+            sql1 = "SELECT id_video FROM video " + "WHERE id_video=" + id_video;
+            String sql2 = "SELECT id_producto FROM reserva" + " WHERE id_producto=" + id_video;
+
+            video = con.createStatement();
+            rs = video.executeQuery(sql1);
+
+            reserva = con.createStatement();
+            rs2 = reserva.executeQuery(sql2);
+
+            while (rs.next()) {
+                id_vid = rs.getString("id_video"); //ID del producto a reservar
+
+            }
+            while (rs2.next()) {
+                id_prod = rs2.getString("id_producto");
+
+            }
+
+            /*-----------------------------------------------*/
+            tipo_reserva = "Video"; //Tipo de producto
+            /*-----------------------------------------------*/
+            DateTimeFormatter fomato = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+
+            LocalDateTime salidaNow = LocalDateTime.now();
+            LocalDate salidaDate = LocalDate.now();
+
+            String formatSalida = salidaNow.format(fomato); //SALIDA
+            /*----------------------------------------------*/
+            DateTimeFormatter fomato2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate entrega;
+            entrega = salidaDate.plusDays(0); //Entrega
+            String formatEntrega = entrega.format(fomato2);
+            /*----------------------------------------------*/
+
+            if (id_vid.equals(id_prod)) {
+                JOptionPane.showMessageDialog(null, "El equipo se encuentra disponible hasta: " + entrega);
+            } else {
+
+                Conexion objCon = new Conexion();
+
+                DefaultTableModel modelo = new DefaultTableModel();
+                PanelReserva reservar = new PanelReserva();
+                reservar.tableReserva.setModel(modelo);
+                String disponible;
+
+                sql = "INSERT INTO reserva(id_reserva,id_usuario,id_producto,tipo_reserva,fecha_salida,fecha_entrega) " + ""
+                        + "VALUES (?,?,?,?,?,?)";
+
+                disponible = "No";
+                ps = con.prepareStatement(sql);
+
+                ps.setString(1, random);
+                ps.setString(2, label);
+                ps.setString(3, id_vid);
+                ps.setString(4, tipo_reserva);
+                ps.setString(5, formatSalida);
+                ps.setString(6, formatEntrega);
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Producto reservado con exito");
+
+                PreparedStatement psVideo = null;
+
+                String sql3 = "UPDATE video SET disponible_v='" + disponible + "' WHERE id_video=" + id_video;
+
+                psVideo = con.prepareStatement(sql3);
+                psVideo.executeUpdate();
+
+                CargarData();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
+        }
+    }
+
     @Override
-    public void Editar(){
+    public void Editar() {
         int fila = tableVideo.getSelectedRow();
-        
+
         String id = tableVideo.getValueAt(fila, 0).toString();
         String equipo = tableVideo.getValueAt(fila, 1).toString();
         String color = tableVideo.getValueAt(fila, 2).toString();
@@ -423,46 +544,44 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        
-        try{
-            String sql = "UPDATE video SET equipo_v='"+equipo+"', color_v='"+color+"', marca_v='"+marca+"'"+
-                    " WHERE id_video="+id+"";
-             
+
+        try {
+            String sql = "UPDATE video SET equipo_v='" + equipo + "', color_v='" + color + "', marca_v='" + marca + "'"
+                    + " WHERE id_video=" + id + "";
+
             actualizar = con.prepareStatement(sql);
             actualizar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Actualizado con exito");
             CargarData();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
         }
     }
-    
+
     @Override
-    public void Eliminar(){
+    public void Eliminar() {
         int fila = tableVideo.getSelectedRow();
         String valor = tableVideo.getValueAt(fila, 0).toString();
-        
+
         PreparedStatement eliminar = null;
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        
-        try{
-            String sql = "DELETE FROM video WHERE id_video="+valor+"";
-            
+
+        try {
+            String sql = "DELETE FROM video WHERE id_video=" + valor + "";
+
             eliminar = con.prepareStatement(sql);
             eliminar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Eliminado con exito");
             CargarData();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se logró eliminar el Registro");
         }
-        
+
     }
-    
-    
-    
+
     @Override
     public void CargarData() {
         try {
@@ -506,7 +625,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
             System.err.println(ex.toString());
         }
     }
-    
+
     @Override
     public void LimpiarTodo() {
         jtfCargarIdV.setText("");
@@ -515,7 +634,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
         jtfIdVideo.setText("");
         jtfMarcaV.setText("");
 
-        jtfIdVideo.requestFocus();    
+        jtfIdVideo.requestFocus();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -540,10 +659,8 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias{
     public static javax.swing.JLabel labelRecibe;
     private javax.swing.JMenuItem menuEditarVideo;
     private javax.swing.JMenuItem menuEliminarVideo;
+    private javax.swing.JMenuItem menuReserva;
     private javax.swing.JTable tableVideo;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
 }

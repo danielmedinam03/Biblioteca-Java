@@ -22,20 +22,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-/**
- *
- * @author Daniel Medina
- */
-public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
+
+public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias {
 
     public PanelEspacios() {
 
         initComponents();
         CargarData();
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,7 +92,7 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
         jLabel1.setText("Espacios");
 
         tableEspacio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tableEspacio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tableEspacio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tableEspacio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -372,7 +368,7 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
     }//GEN-LAST:event_btnAddEspaciosActionPerformed
 
     @Override
-    public void CargarData(){
+    public void CargarData() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             tableEspacio.setModel(modelo);
@@ -397,7 +393,7 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
             modelo.addColumn("Capacidad");
             modelo.addColumn("Descripción");
             modelo.addColumn("Disponible");
-            
+
             //Recorrer
             while (rs.next()) {
 
@@ -414,13 +410,11 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
             System.err.println(ex.toString());
         }
 
-        
-       
     }
-    
+
     private void btnCargarBDEspaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarBDEspaActionPerformed
         CargarData();
-        
+
     }//GEN-LAST:event_btnCargarBDEspaActionPerformed
 
     private void btnCargarEspaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarEspaActionPerformed
@@ -484,9 +478,9 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
     }//GEN-LAST:event_jtfIdEKeyTyped
 
     private void menuEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEliminarActionPerformed
-        
+
         Eliminar();
-        
+
     }//GEN-LAST:event_menuEliminarActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
@@ -496,11 +490,11 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
     private void menuReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReservarActionPerformed
 
         Reservar();
-        
+
     }//GEN-LAST:event_menuReservarActionPerformed
 
     public void Reservar() {
-        
+
         String label = PanelEspacios.labelRecibe.getText();  //Valor del ID del usuario
         /*--------------------------------------------*/
         double num1 = 1 + Math.random();
@@ -510,75 +504,111 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
         String random = df.format(suma) + "-E"; //Valor del ID reserva
         /*--------------------------------------------*/
 
-        try{
+        try {
             PreparedStatement ps = null;
+
             Statement reserva = null;
+            Statement espacio = null;
+
             ResultSet rs = null;
+            ResultSet rs2 = null;
+
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
 
-            String id = null;
-            String id_consulta,sql,tipo_reserva;
+            String id_esp = null;
+            String id_prod = null;
+            String id_espacio, sql, sql1, tipo_reserva, id_reserva;
 
             int fila = tableEspacio.getSelectedRow();
-            id_consulta = tableEspacio.getValueAt(fila, 0).toString();
-            sql = "SELECT id_espacios FROM espacios " + "WHERE id_espacios=" + id_consulta;
+            //int fila2 = PanelReserva.tableReserva.getSelectedRow();
+
+            id_espacio = tableEspacio.getValueAt(fila, 0).toString();
+            //id_reserva = PanelReserva.tableReserva.getValueAt(fila, 0).toString();
+
+            sql1 = "SELECT id_espacios FROM espacios " + "WHERE id_espacios=" + id_espacio;
+            String sql2 = "SELECT id_producto FROM reserva" + " WHERE id_producto=" + id_espacio;
+
+            espacio = con.createStatement();
+            rs = espacio.executeQuery(sql1);
 
             reserva = con.createStatement();
-            rs = reserva.executeQuery(sql);
+            rs2 = reserva.executeQuery(sql2);
+
             while (rs.next()) {
-                id = rs.getString("id_espacios"); //ID del producto a reservar
-                System.out.println(id);
+                id_esp = rs.getString("id_espacios"); //ID del producto a reservar
+                
             }
+            while(rs2.next()){
+                id_prod = rs2.getString("id_producto");
+                
+            }
+            
             /*-----------------------------------------------*/
             tipo_reserva = "Espacio"; //Tipo de producto
             /*-----------------------------------------------*/
-            DateTimeFormatter fomato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            
-            LocalDateTime salidaNow = LocalDateTime.now(); 
-            LocalDate salidaDate = LocalDate.now(); 
-            
+            DateTimeFormatter fomato = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+
+            LocalDateTime salidaNow = LocalDateTime.now();
+            LocalDate salidaDate = LocalDate.now();
+
             String formatSalida = salidaNow.format(fomato); //SALIDA
             /*----------------------------------------------*/
+            DateTimeFormatter fomato2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate entrega;
-            entrega = salidaDate.plusDays(4); //Entrega
-            String formatEntrega = entrega.format(fomato);
+            entrega = salidaDate.plusDays(2); //Entrega
+            String formatEntrega = entrega.format(fomato2);
             /*----------------------------------------------*/
             
-            Conexion objCon = new Conexion();
-            
-            DefaultTableModel modelo = new DefaultTableModel();
-            
-            PanelReserva.tableReserva.setModel(modelo);
-            String disponible;
+            if (id_esp.equals(id_prod)){
+                JOptionPane.showMessageDialog(null, "El Espacio se encuentra disponible hasta: " + entrega);
+            }else{
 
-            sql = "INSERT INTO reserva(id_reserva,id_usuario,id_producto,tipo_reserva,fecha_salida,fecha_entrega) "+""
+                Conexion objCon = new Conexion();
+
+                DefaultTableModel modelo = new DefaultTableModel();
+                PanelReserva reservar = new PanelReserva();
+                reservar.tableReserva.setModel(modelo);
+                String disponible;
+
+                sql = "INSERT INTO reserva(id_reserva,id_usuario,id_producto,tipo_reserva,fecha_salida,fecha_entrega) " + ""
                         + "VALUES (?,?,?,?,?,?)";
-            
-            disponible = "No";
-            ps = con.prepareStatement(sql);
 
-            ps.setString(1, random.toString());
-            ps.setString(2, label.toString());
-            ps.setString(3, id.toString());
-            ps.setString(4, tipo_reserva.toString());
-            ps.setString(5, formatSalida.toString());
-            ps.setString(6, formatEntrega.toString());
+                disponible = "No";
+                ps = con.prepareStatement(sql);
 
-            ps.execute();
-            JOptionPane.showMessageDialog(null, "Producto guardado con exito");
+                ps.setString(1, random);
+                ps.setString(2, label);
+                ps.setString(3, id_esp);
+                ps.setString(4, tipo_reserva);
+                ps.setString(5, formatSalida);
+                ps.setString(6, formatEntrega);
+
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Producto reservado con exito");
+
+                PreparedStatement psEspacios = null;
+
+                //String id_espacios = tableEspacio.getValueAt(fila, 0).toString();
+                String sql3 = "UPDATE espacios SET disponible_e='" + disponible + "' WHERE id_espacios=" + id_espacio;
+
+                psEspacios = con.prepareStatement(sql3);
+                psEspacios.executeUpdate();
+
+                CargarData();
+            }
             
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
         }
     }
-    
-    
+
     @Override
-    public void Editar(){
+    public void Editar() {
         int fila = tableEspacio.getSelectedRow();
-        
+
         String id = tableEspacio.getValueAt(fila, 0).toString();
         String nombre = tableEspacio.getValueAt(fila, 1).toString();
         int capacidad = Integer.parseInt(tableEspacio.getValueAt(fila, 2).toString());
@@ -588,56 +618,56 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias{
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        
-        try{
-            String sql = "UPDATE espacios SET nombre_e='"+nombre+"', capacidad_e="+capacidad+", descripcion_e='"+descripcion+"'"+
-                    "WHERE id_espacios="+id+"";
-             
+
+        try {
+            String sql = "UPDATE espacios SET nombre_e='" + nombre + "', capacidad_e=" + capacidad + ", descripcion_e='" + descripcion + "'"
+                    + "WHERE id_espacios=" + id + "";
+
             actualizar = con.prepareStatement(sql);
             actualizar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Actualizado con exito");
             CargarData();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
         }
     }
-    
+
     @Override
-    public void Eliminar(){
+    public void Eliminar() {
         int fila = tableEspacio.getSelectedRow();
         String valor = tableEspacio.getValueAt(fila, 0).toString();
-        
+
         PreparedStatement eliminar = null;
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        
-        try{
-            String sql = "DELETE FROM espacios WHERE id_espacios="+valor+"";
-            
+
+        try {
+            String sql = "DELETE FROM espacios WHERE id_espacios=" + valor + "";
+
             eliminar = con.prepareStatement(sql);
             eliminar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Eliminado con exito");
             CargarData();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se logró eliminar el Registro");
         }
-        
+
     }
-    
+
     @Override
-    public void LimpiarTodo(){
-        
+    public void LimpiarTodo() {
+
         jtfBuscarIdE.setText("");
         jtfCapacidadE.setText("");
         jtfDescripcionE.setText("");
         jtfIdE.setText("");
         jtfNombreE.setText("");
-        
+
         jtfIdE.requestFocus();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEspacios;
