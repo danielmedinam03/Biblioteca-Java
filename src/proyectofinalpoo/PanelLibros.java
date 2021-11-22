@@ -47,24 +47,24 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         jtfBuscarID = new javax.swing.JTextField();
         btnCargarLib = new javax.swing.JButton();
         btnCargarLibro = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblAutor = new javax.swing.JLabel();
+        lblEdit = new javax.swing.JLabel();
+        lblNPag = new javax.swing.JLabel();
         jtfIDLib = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblAnio = new javax.swing.JLabel();
         jtfNombreLib = new javax.swing.JTextField();
         jtfAutorLib = new javax.swing.JTextField();
         jtfPaginasLib = new javax.swing.JTextField();
         jtfAnioLib = new javax.swing.JTextField();
         jtfEditorialLib = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         btnAgregarLib = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableLibro = new javax.swing.JTable();
         labelRecibe = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,20 +130,20 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("ID:");
+        lblID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblID.setText("ID:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Nombre:");
+        lblName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblName.setText("Nombre:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Autor:");
+        lblAutor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblAutor.setText("Autor:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Editorial:");
+        lblEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblEdit.setText("Editorial:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Nro de Páginas:");
+        lblNPag.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNPag.setText("Nro de Páginas:");
 
         jtfIDLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfIDLib.addActionListener(new java.awt.event.ActionListener() {
@@ -157,8 +157,8 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Año:");
+        lblAnio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblAnio.setText("Año:");
 
         jtfNombreLib.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfNombreLib.addActionListener(new java.awt.event.ActionListener() {
@@ -200,10 +200,10 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("Libreria UCC");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 0, 102));
+        lblTitle.setText("Libreria UCC");
+        lblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnAgregarLib.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAgregarLib.setText("Agregar");
@@ -247,10 +247,10 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         labelRecibe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelRecibe.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Usuario:");
-        jLabel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setText("Usuario:");
+        lblUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -270,37 +270,37 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblID)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jtfIDLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
+                                .addComponent(lblName)
                                 .addGap(12, 12, 12)
                                 .addComponent(jtfNombreLib, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
+                                .addComponent(lblAutor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtfAutorLib, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(lblTitle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelRecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(lblEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfEditorialLib, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
+                        .addComponent(lblNPag)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfPaginasLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(lblAnio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfAnioLib, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
@@ -317,27 +317,27 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8))
+                        .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(labelRecibe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfIDLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addComponent(lblID)
+                    .addComponent(lblName)
+                    .addComponent(lblAutor)
                     .addComponent(jtfAutorLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNombreLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblEdit)
                     .addComponent(jtfEditorialLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblNPag)
                     .addComponent(jtfPaginasLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblAnio)
                     .addComponent(jtfAnioLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarLib, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -536,6 +536,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         
     }//GEN-LAST:event_menuReservarActionPerformed
 
+    @Override
     public void Reservar() {
 
         String label = PanelLibros.labelRecibe.getText();  //Valor del ID del usuario
@@ -647,8 +648,7 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
             JOptionPane.showMessageDialog(null, "No se logró Actualizar el Registro");
         }
     }
-
-    
+ 
     @Override
     public void Editar(){
         int fila = tableLibro.getSelectedRow();
@@ -702,8 +702,6 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         }
         
     }
-    
-   
     
     @Override
     public void CargarData() {
@@ -767,22 +765,12 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
         jtfIDLib.requestFocus();    
     }
 
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JButton btnAgregarLib;
     private javax.swing.JButton btnCargarLib;
     private javax.swing.JButton btnCargarLibro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -794,6 +782,14 @@ public class PanelLibros extends javax.swing.JPanel implements AccionesVarias{
     private javax.swing.JTextField jtfNombreLib;
     private javax.swing.JTextField jtfPaginasLib;
     public static javax.swing.JLabel labelRecibe;
+    private javax.swing.JLabel lblAnio;
+    private javax.swing.JLabel lblAutor;
+    private javax.swing.JLabel lblEdit;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblNPag;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JMenuItem menuEditar;
     private javax.swing.JMenuItem menuEliminar;
     private javax.swing.JMenuItem menuReservar;

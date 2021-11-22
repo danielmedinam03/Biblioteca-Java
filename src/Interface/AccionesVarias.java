@@ -14,5 +14,6 @@ public interface AccionesVarias {
     void CargarData();
     void Editar();
     void Eliminar();
+    void Reservar();
     
 }

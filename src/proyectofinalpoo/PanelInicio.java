@@ -33,13 +33,13 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
         content1 = new javax.swing.JPanel();
         btnContinuar = new javax.swing.JButton();
         jtfIDReserva = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
         rbtnLibros = new javax.swing.JRadioButton();
         rbtnVideo = new javax.swing.JRadioButton();
         rbtnEspacios = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelOp = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        labelImg = new javax.swing.JLabel();
 
         content1.setBackground(new java.awt.Color(45, 164, 242));
 
@@ -53,8 +53,8 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
 
         jtfIDReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel5.setText("ID:");
+        labelID.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        labelID.setText("ID:");
 
         rbtnLibros.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rbtnLibros.setText("Libros");
@@ -65,20 +65,20 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
         rbtnEspacios.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rbtnEspacios.setText("Espacios");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setText("¿Que deseas reservar?");
+        labelOp.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        labelOp.setText("¿Que deseas reservar?");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinalpoo/pensar.png"))); // NOI18N
+        labelImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinalpoo/pensar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelImg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout content1Layout = new javax.swing.GroupLayout(content1);
@@ -104,13 +104,13 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
                                 .addGap(86, 86, 86)
                                 .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(content1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtfIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(labelOp)
                 .addGap(278, 278, 278))
         );
         content1Layout.setVerticalGroup(
@@ -121,9 +121,9 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
                         .addGap(73, 73, 73)
                         .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfIDReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelOp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtnEspacios)
@@ -237,11 +237,11 @@ public class PanelInicio extends javax.swing.JPanel implements MostrarPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuar;
     private javax.swing.JPanel content1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jtfIDReserva;
+    private javax.swing.JLabel labelID;
+    private javax.swing.JLabel labelImg;
+    private javax.swing.JLabel labelOp;
     private javax.swing.JRadioButton rbtnEspacios;
     private javax.swing.JRadioButton rbtnLibros;
     private javax.swing.JRadioButton rbtnVideo;

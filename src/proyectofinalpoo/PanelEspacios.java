@@ -41,24 +41,24 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
         menuEditar = new javax.swing.JMenuItem();
         menuReservar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEspacio = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+        lblCap = new javax.swing.JLabel();
+        lblDes = new javax.swing.JLabel();
         jtfIdE = new javax.swing.JTextField();
         jtfNombreE = new javax.swing.JTextField();
         jtfDescripcionE = new javax.swing.JTextField();
         jtfCapacidadE = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        lblIdEs = new javax.swing.JLabel();
         jtfBuscarIdE = new javax.swing.JTextField();
         btnCargarEspa = new javax.swing.JButton();
         btnCargarBDEspa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnAddEspacios = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         labelRecibe = new javax.swing.JLabel();
 
         menuEliminar.setText("Eliminar");
@@ -87,9 +87,9 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
 
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel1.setText("Espacios");
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 26)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(0, 0, 102));
+        lbTitle.setText("Espacios");
 
         tableEspacio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tableEspacio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -120,17 +120,17 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
         tableEspacio.setComponentPopupMenu(popMenuRegistros);
         jScrollPane1.setViewportView(tableEspacio);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel2.setText("ID Espacio:");
+        lblID.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblID.setText("ID Espacio:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setText("Nombre:");
+        lbName.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lbName.setText("Nombre:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("Capacidad:");
+        lblCap.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblCap.setText("Capacidad:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel5.setText("Descripción:");
+        lblDes.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblDes.setText("Descripción:");
 
         jtfIdE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfIdE.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -145,8 +145,8 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
 
         jtfCapacidadE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setText("ID espacio:");
+        lblIdEs.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblIdEs.setText("ID espacio:");
 
         btnCargarEspa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCargarEspa.setText("Cargar");
@@ -193,10 +193,10 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                 .addComponent(btnAddEspacios, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Usuario:");
-        jLabel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setText("Usuario:");
+        lblUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         labelRecibe.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelRecibe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -213,7 +213,7 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel14)
+                        .addComponent(lblIdEs)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfBuscarIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -226,29 +226,29 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(lblCap)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtfCapacidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(lblID)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jtfIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(lblDes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtfDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(lbName)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtfNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -264,22 +264,22 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jtfIdE)
-                                    .addComponent(jLabel2))
+                                    .addComponent(lblID))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
+                                    .addComponent(lbName)
                                     .addGap(10, 10, 10)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelRecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -288,7 +288,7 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
+                            .addComponent(lblIdEs)
                             .addComponent(jtfBuscarIdE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCargarEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCargarBDEspa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,9 +296,9 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfDescripcionE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
+                            .addComponent(lblDes)
                             .addComponent(jtfCapacidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblCap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -668,18 +668,10 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
         jtfIdE.requestFocus();
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEspacios;
     private javax.swing.JButton btnCargarBDEspa;
     private javax.swing.JButton btnCargarEspa;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -689,6 +681,13 @@ public class PanelEspacios extends javax.swing.JPanel implements AccionesVarias 
     private javax.swing.JTextField jtfIdE;
     private javax.swing.JTextField jtfNombreE;
     public static javax.swing.JLabel labelRecibe;
+    private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbTitle;
+    private javax.swing.JLabel lblCap;
+    private javax.swing.JLabel lblDes;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIdEs;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JMenuItem menuEditar;
     private javax.swing.JMenuItem menuEliminar;
     private javax.swing.JMenuItem menuReservar;

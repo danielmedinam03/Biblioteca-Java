@@ -31,21 +31,21 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
     private void initComponents() {
 
         contentRegistro = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
         jtfIDRegistro = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblNom = new javax.swing.JLabel();
+        lblProg = new javax.swing.JLabel();
         jtfNombre = new javax.swing.JTextField();
         jtfPrograma = new javax.swing.JTextField();
         btnRegistro = new javax.swing.JButton();
         btnYaRegistrado = new javax.swing.JButton();
         jtfCampus = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        lbCampus = new javax.swing.JLabel();
 
         contentRegistro.setBackground(new java.awt.Color(45, 164, 242));
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
-        jLabel5.setText("ID:");
+        lblId.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
+        lblId.setText("ID:");
 
         jtfIDRegistro.setColumns(5);
         jtfIDRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -60,11 +60,11 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
-        jLabel2.setText("Nombre:");
+        lblNom.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
+        lblNom.setText("Nombre:");
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
-        jLabel4.setText("Programa:");
+        lblProg.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
+        lblProg.setText("Programa:");
 
         jtfNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -101,8 +101,8 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
-        jLabel6.setText("Campus:");
+        lbCampus.setFont(new java.awt.Font("Verdana", 1, 27)); // NOI18N
+        lbCampus.setText("Campus:");
 
         javax.swing.GroupLayout contentRegistroLayout = new javax.swing.GroupLayout(contentRegistro);
         contentRegistro.setLayout(contentRegistroLayout);
@@ -113,10 +113,10 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
                 .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
                         .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblProg, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCampus, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +136,7 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
                 .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentRegistroLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jtfIDRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -144,15 +144,15 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
                 .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtfPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblProg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentRegistroLayout.createSequentialGroup()
                         .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(57, 57, 57)))
                 .addGap(7, 7, 7)
                 .addGroup(contentRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCampus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfCampus, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,13 +270,13 @@ public class PanelRegistro extends javax.swing.JPanel implements MostrarPanel {
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnYaRegistrado;
     private javax.swing.JPanel contentRegistro;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jtfCampus;
     private javax.swing.JTextField jtfIDRegistro;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfPrograma;
+    private javax.swing.JLabel lbCampus;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblProg;
     // End of variables declaration//GEN-END:variables
 }

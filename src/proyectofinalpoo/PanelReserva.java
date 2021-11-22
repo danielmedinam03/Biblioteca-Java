@@ -81,8 +81,8 @@ public class PanelReserva extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableReserva = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblReservas = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         jtfIdReserva = new javax.swing.JTextField();
         btnCargarReserva = new javax.swing.JButton();
         btnActualizarReserva = new javax.swing.JButton();
@@ -127,11 +127,11 @@ public class PanelReserva extends javax.swing.JPanel {
         tableReserva.setComponentPopupMenu(ppMenuEntregar);
         jScrollPane1.setViewportView(tableReserva);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
-        jLabel1.setText("Reservas");
+        lblReservas.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
+        lblReservas.setText("Reservas");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("ID:");
+        lblID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblID.setText("ID:");
 
         jtfIdReserva.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -159,7 +159,7 @@ public class PanelReserva extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)
+                        .addComponent(lblID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfIdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -168,7 +168,7 @@ public class PanelReserva extends javax.swing.JPanel {
                         .addComponent(btnActualizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
+                        .addComponent(lblReservas)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,10 +181,10 @@ public class PanelReserva extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblReservas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblID)
                     .addComponent(jtfIdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCargarReserva)
                     .addComponent(btnActualizarReserva))
@@ -318,11 +318,11 @@ public class PanelReserva extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarReserva;
     private javax.swing.JButton btnCargarReserva;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtfIdReserva;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblReservas;
     private javax.swing.JMenuItem menuEntregar;
     private javax.swing.JPopupMenu ppMenuEntregar;
     public static javax.swing.JTable tableReserva;

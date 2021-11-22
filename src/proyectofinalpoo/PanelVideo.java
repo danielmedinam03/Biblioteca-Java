@@ -25,9 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
 
-    /**
-     * Creates new form PanelVideo
-     */
+   
     public PanelVideo() {
         initComponents();
         CargarData();
@@ -42,24 +40,24 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
         menuEditarVideo = new javax.swing.JMenuItem();
         menuReserva = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableVideo = new javax.swing.JTable();
         btnAgregarVideo = new javax.swing.JButton();
         btnCargarIdV = new javax.swing.JButton();
         btnCargarBDvideo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblIdBuscar = new javax.swing.JLabel();
         jtfCargarIdV = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblIdV = new javax.swing.JLabel();
+        lblEquipo = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblColor = new javax.swing.JLabel();
         jtfIdVideo = new javax.swing.JTextField();
         jtfEquipoV = new javax.swing.JTextField();
         jtfMarcaV = new javax.swing.JTextField();
         jtfColorV = new javax.swing.JTextField();
         labelRecibe = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
 
         menuEliminarVideo.setText("Eliminar");
         menuEliminarVideo.addActionListener(new java.awt.event.ActionListener() {
@@ -87,9 +85,9 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
 
         jPanel1.setBackground(new java.awt.Color(45, 164, 242));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel1.setText("Video");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 0, 102));
+        lblTitle.setText("Video");
 
         tableVideo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tableVideo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -144,20 +142,20 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("ID video");
+        lblIdBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIdBuscar.setText("ID video");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("ID Video:");
+        lblIdV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIdV.setText("ID Video:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Equipo:");
+        lblEquipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEquipo.setText("Equipo:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Marca:");
+        lblMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblMarca.setText("Marca:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Color:");
+        lblColor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblColor.setText("Color:");
 
         jtfIdVideo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfIdVideo.addActionListener(new java.awt.event.ActionListener() {
@@ -181,10 +179,10 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
         labelRecibe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelRecibe.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Usuario:");
-        jLabel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setText("Usuario:");
+        lblUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,7 +192,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblIdBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfCargarIdV, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -207,18 +205,18 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
+                                    .addComponent(lblIdV)
+                                    .addComponent(lblMarca))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jtfIdVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
-                                        .addComponent(jLabel4)
+                                        .addComponent(lblEquipo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jtfEquipoV, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel6)
+                                        .addComponent(lblColor)
                                         .addGap(18, 18, 18)
                                         .addComponent(jtfColorV, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jtfMarcaV, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -226,14 +224,14 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(58, 58, 58)
-                                    .addComponent(jLabel1)
+                                    .addComponent(lblTitle)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnAgregarVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addGap(427, 427, 427)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(labelRecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE))))))
@@ -245,22 +243,22 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelRecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
+                            .addComponent(lblIdV)
+                            .addComponent(lblEquipo)
                             .addComponent(jtfIdVideo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfEquipoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfColorV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                            .addComponent(lblColor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(lblMarca)
                             .addComponent(jtfMarcaV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -271,7 +269,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCargarIdV)
                     .addComponent(btnCargarBDvideo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblIdBuscar)
                     .addComponent(jtfCargarIdV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -423,6 +421,7 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
 
     }//GEN-LAST:event_menuReservaActionPerformed
 
+    @Override
     public void Reservar() {
 
         String label = PanelVideo.labelRecibe.getText();  //Valor del ID del usuario
@@ -642,13 +641,6 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
     private javax.swing.JButton btnAgregarVideo;
     private javax.swing.JButton btnCargarBDvideo;
     private javax.swing.JButton btnCargarIdV;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtfCargarIdV;
@@ -657,6 +649,13 @@ public class PanelVideo extends javax.swing.JPanel implements AccionesVarias {
     private javax.swing.JTextField jtfIdVideo;
     private javax.swing.JTextField jtfMarcaV;
     public static javax.swing.JLabel labelRecibe;
+    private javax.swing.JLabel lblColor;
+    private javax.swing.JLabel lblEquipo;
+    private javax.swing.JLabel lblIdBuscar;
+    private javax.swing.JLabel lblIdV;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JMenuItem menuEditarVideo;
     private javax.swing.JMenuItem menuEliminarVideo;
     private javax.swing.JMenuItem menuReserva;
